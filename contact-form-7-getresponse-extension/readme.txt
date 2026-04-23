@@ -3,8 +3,8 @@ Contributors: WEN Solutions
 Donate link: http://wensolutions.com
 Tags: contact form 7, email, mailing list, getresponse, get response, cge, contact, form, contact form,  newsletter
 Requires at least: 3.9
-Tested up to: 6.4
-Stable tag: 1.0.8
+Tested up to: 6.9
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 A very easy plugin to integrate GetResponse campaigns with Contact Form 7.
@@ -33,6 +33,11 @@ Plugin : [Homepage](http://wensolutions.com/plugins/contact-form-7-getresponse-e
 
 
 == Changelog ==
+
+= 1.0.9 =
+Release Date: 23rd April, 2026
+
+* Compatibility tested with WordPress 6.9.
 
 = 1.0.8 =
 Release Date: 18th January, 2024
