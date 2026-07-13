@@ -1,3 +1,5 @@
+console.log(cf7_options);
+
 (function ( $ ) {
   $.fn.cf7_gr_change_select_fieldsx = function() {
    
@@ -144,7 +146,7 @@ jQuery( function( $ ){
       $( 'body' ).on( 'click', 'a#cf7-gs-ext-update-select-camp', function(){
         var $this = $(this);
         $this.html( '<span class="spinner" style="visibility:visible;float: none;"></span>' );
-        $.post( cf7_options.ajax_url,{action:'gr_update_camp'}, function(data){
+        $.post( cf7_options.ajax_url,{action:'gr_update_camp',nonce: cf7_options.nonce}, function(data){
             if( '' != data && 0 != data ){
               $this.html( '<span class="dashicons dashicons-yes"></span>');
               // var campCount = _.size(data.gs_camp);
@@ -167,7 +169,8 @@ jQuery( function( $ ){
         var $this = $(this);
         var select_field = "#cf7-gs-custom-key"+$(this).attr('data-cfid');
         $this.html( '<span class="spinner" style="visibility:visible;float: none;"></span>' );
-        $.post( cf7_options.ajax_url,{action:'gr_update_custom_field'}, function(data){
+        $.post( cf7_options.ajax_url,{action:'gr_update_custom_field',nonce: cf7_options.nonce}, function(data){
+
             if( '' != data && 0 != data ){
               $this.html( '<span class="dashicons dashicons-yes"></span>');
               // var campCount = _.size(data.gs_camp);

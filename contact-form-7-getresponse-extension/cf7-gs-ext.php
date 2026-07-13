@@ -9,7 +9,7 @@
  * Plugin Name:       Contact Form 7 GetResponse Extension
  * Plugin URI:        http://wensolutions.com/plugins/contact-form-7-getresponse-extension
  * Description:       A very easy plugin to integrate GetResponse campaigns with Contact Form 7.
- * Version:           1.0.9
+ * Version:           1.1.0
  * Requires at least: 3.9
  * Requires PHP:      5.6
  * Tested up to:      6.9

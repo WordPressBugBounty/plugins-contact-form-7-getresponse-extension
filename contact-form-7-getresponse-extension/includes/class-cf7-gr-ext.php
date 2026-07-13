@@ -160,9 +160,9 @@ class Cf7_Gr_Ext {
 		$this->loader->add_action( 'wpcf7_editor_panels', $plugin_admin, 'cf7_add_tab' );
 		$this->loader->add_action( 'wpcf7_after_save', $plugin_admin, 'save_options' );
 		$this->loader->add_action( 'wp_ajax_gr_update_camp', $plugin_admin, 'update_campaigns' );
-		$this->loader->add_action( 'wp_ajax_nopriv_gr_update_camp', $plugin_admin, 'update_campaigns' );
+		// $this->loader->add_action( 'wp_ajax_nopriv_gr_update_camp', $plugin_admin, 'update_campaigns' );
 		$this->loader->add_action( 'wp_ajax_gr_update_custom_field', $plugin_admin, 'gr_update_custom_field' );
-		$this->loader->add_action( 'wp_ajax_nopriv_gr_update_custom_field', $plugin_admin, 'gr_update_custom_field' );
+		// $this->loader->add_action( 'wp_ajax_nopriv_gr_update_custom_field', $plugin_admin, 'gr_update_custom_field' );
 
 	}
 

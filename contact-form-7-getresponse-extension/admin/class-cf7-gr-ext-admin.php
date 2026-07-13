@@ -77,6 +77,7 @@ class Cf7_Gr_Ext_Admin {
 		$translation_array = array(
 			'base_url' => home_url( '/' ),
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'cf7_gr_nonce' ),
 			'messages' => array(
 				'remove_alert' => __( 'Are you sure to delete?', 'cf7-gr-ext' ),
 				'select_campaign' => __( 'Select Campaign', 'cf7-gr-ext' ),
@@ -121,10 +122,23 @@ class Cf7_Gr_Ext_Admin {
 
     function update_campaigns(){
 
+		check_ajax_referer( 'cf7_gr_nonce', 'nonce' );
+
+		// Administrator only
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Unauthorized.', 'cf7-gr-ext' ),
+				),
+				403
+			);
+		}
+
 		$options = get_option( 'cf7_gs_ext_basics_options' );
 
 		$getresponse = new GetResponse( $options['gs_key'] );
 		$account = $getresponse->accounts();
+
 
 		if( isset( $account->accountId ) && '' != $account->accountId ){
 
@@ -138,7 +152,10 @@ class Cf7_Gr_Ext_Admin {
 				update_option( 'cf7_gs_ext_basics_options', $new_options );
 
 				if( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ){
-					echo json_encode( $new_options );
+					echo json_encode( array(
+						'gs_con' => $new_options['gs_con'],
+						'gs_camp' => $new_options['gs_camp'],
+					) );
 					exit;
 				}
 			} # END if( !empty( $campaigns ) )
@@ -161,6 +178,19 @@ class Cf7_Gr_Ext_Admin {
 	}
 
 	function gr_update_custom_field(){
+
+		check_ajax_referer( 'cf7_gr_nonce', 'nonce' );
+
+		// Administrator only
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Unauthorized.', 'cf7-gr-ext' ),
+				),
+				403
+			);
+		}
+
 		$options = get_option( 'cf7_gs_ext_basics_options' );
 
 		$getresponse = new GetResponse( $options['gs_key'] );
@@ -178,7 +208,10 @@ class Cf7_Gr_Ext_Admin {
 				update_option( 'cf7_gs_ext_basics_options', $new_options );
 
 				if( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ){
-					echo json_encode( $new_options );
+					echo json_encode( array(
+						'gs_con' => $new_options['gs_con'],
+						'gs_camp' => $new_options['gs_camp'],
+					) );
 					exit;
 				}
 			} # END if( !empty( $campaigns ) )
