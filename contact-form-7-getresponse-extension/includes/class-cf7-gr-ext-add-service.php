@@ -18,6 +18,8 @@
  * @author     WEN Solutions <info@wensolutions.com>
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // Check if 'WPCF7_Service' is active.
 if( !class_exists( 'WPCF7_Service' ) ){
 	return;
@@ -70,7 +72,7 @@ class Cf7_Gr_Ext_Add_Service extends WPCF7_Service{
 	public function link() {
 		echo sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
 			'http://getresponse.com',
-			__( 'Get API Key', 'cf7-gr-ext' ) );
+			esc_html__( 'Get API Key', 'cf7-gr-ext' ) );
 	}
 
 	public function load( $action = '' ) {
@@ -138,7 +140,7 @@ class Cf7_Gr_Ext_Add_Service extends WPCF7_Service{
 			$class = 'cf7-gr-ext-notice cf7-gr-ext-notice-error';
 			$message = __( 'PHP cURL needs to be active to enter API key.', 'cf7-gr-ext' );
 
-			printf( '<div class="%1$s">%2$s</div>', $class, $message );
+			printf( '<div class="%1$s">%2$s</div>', esc_attr( $class ), esc_html( $message ) );
 			return;
 		}
 		if( 'setup' == $action ){
@@ -148,12 +150,12 @@ class Cf7_Gr_Ext_Add_Service extends WPCF7_Service{
 
 		if ( $this->is_active() ) {
 			?>
-			<p><?php echo esc_html( __( 'Current setup', 'cf7-gr-ext' ) ); ?></p>
+			<p><?php echo esc_html__( 'Current setup', 'cf7-gr-ext' ); ?></p>
 			<table class="form-table">
 				<tbody>
 					<tr>
-						<th scope="row"><?php echo esc_html( __( 'API Key', 'cf7-gr-ext' ) ); ?></th>
-						<td><?php echo $this->get_apikey(); ?></td>
+						<th scope="row"><?php echo esc_html__( 'API Key', 'cf7-gr-ext' ); ?></th>
+						<td><?php echo esc_html( $this->get_apikey() ); ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -165,7 +167,20 @@ class Cf7_Gr_Ext_Add_Service extends WPCF7_Service{
 
 			<p><a href="<?php echo esc_url( $this->menu_page_url( 'action=setup' ) ); ?>" class="button"><?php echo esc_html( __( "Configure Keys", 'cf7-gr-ext' ) ); ?></a></p>
 
-			<p><?php echo sprintf( esc_html( __( "For more details, see %s.", 'cf7-gr-ext' ) ), wpcf7_link( __( 'http://wensolutions.com/contact-form-getresponse-extension-setup/', 'cf7-gr-ext' ), __( 'Setup process', 'cf7-gr-ext' ) ) ); ?></p>
+			<p>
+				<?php
+				printf(
+					/* translators: %s: setup process link. */
+					esc_html__( 'For more details, see %s.', 'cf7-gr-ext' ),
+					wp_kses_post(
+						wpcf7_link(
+							esc_url( 'http://wensolutions.com/contact-form-getresponse-extension-setup/' ),
+							esc_html__( 'Setup process', 'cf7-gr-ext' )
+						)
+					)
+				);
+				?>
+			</p>
 			<?php
 		}
 	}

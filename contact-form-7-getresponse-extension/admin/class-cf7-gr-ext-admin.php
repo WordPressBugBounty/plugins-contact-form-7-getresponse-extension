@@ -106,7 +106,7 @@ class Cf7_Gr_Ext_Admin {
     function cf7_tab_callback($args) {
     	$options = get_option( 'cf7_gs_ext_basics_options' );
     	if ( empty( $options ) || ! isset( $options['gs_con'] ) ) {
-    		echo sprintf( '%s. <a href="%s">%s</a>.', __( 'Setup Process is not completed', 'cf7-gr-ext' ),  esc_url( menu_page_url( 'wpcf7-integration', false ) ), __( 'Click here to complete', 'cf7-gr-ext' ) );
+    		echo sprintf( '%s. <a href="%s">%s</a>.', esc_html__( 'Setup Process is not completed', 'cf7-gr-ext' ),  esc_url( menu_page_url( 'wpcf7-integration', false ) ), esc_html__( 'Click here to complete', 'cf7-gr-ext' ) );
     		return;
     	}
 
@@ -247,7 +247,7 @@ class Cf7_Gr_Ext_Admin {
 			if ( is_plugin_active( $plugin ) ) {
 				deactivate_plugins( $plugin );
 				
-				wp_die( sprintf( __( '%s requires the %s plugin to work. Please activate it first.', 'cf7-gr-ext' ) . '<br><br>' . __( 'Back to the WordPress %s Plugins page %s.', 'cf7-gr-ext' ), '<strong>' . $plugin_data['Name'] . '</strong>', '<strong>Contact Form 7</strong>', '<a href="' . get_admin_url( null, 'plugins.php' ) . '">', '</a>'  ) );
+				wp_die( sprintf( esc_html__( '%s requires the %s plugin to work. Please activate it first.', 'cf7-gr-ext' ) . '<br><br>' . esc_html__( 'Back to the WordPress %s Plugins page %s.', 'cf7-gr-ext' ), '<strong>' . esc_html( $plugin_data['Name'] ) . '</strong>', '<strong>Contact Form 7</strong>', '<a href="' . esc_html( get_admin_url( null, 'plugins.php' ) ). '">', '</a>'  ) );
 			}
 		}
 
